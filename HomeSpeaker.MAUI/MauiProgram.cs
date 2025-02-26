@@ -1,6 +1,4 @@
-﻿using Grpc.Net.Client;
-using Grpc.Net.Client.Web;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace HomeSpeaker.MAUI;
 

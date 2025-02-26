@@ -32,6 +32,7 @@ public class HomeSpeakerMauiService
                 result.Add(songMsg.ToSong());
             }
         }
+
         return result;
     }
 
