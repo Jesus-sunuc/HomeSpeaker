@@ -66,4 +66,25 @@ public partial class MainViewModel : ObservableObject
             StatusMessage = $"Error fetching status: {ex.Message}";
         }
     }
+
+    [RelayCommand]
+    public async Task PlaySong(SongModel selectedSong)
+    {
+        if (selectedSong == null)
+        {
+            StatusMessage = "No song selected.";
+            return;
+        }
+
+        try
+        {
+            await homeSpeakerService.PlaySongAsync(selectedSong.SongId);
+            StatusMessage = $"Playing: {selectedSong.Name}";
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Error playing song: {ex.Message}";
+        }
+    }
+
 }

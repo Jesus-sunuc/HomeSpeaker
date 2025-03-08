@@ -25,7 +25,7 @@ public class HomeSpeakerMauiService : IHomeSpeakerMauiService
             EnableMultipleHttp2Connections = true
         };
 
-        var grpcWebHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, httpHandler); // Use gRPC-Web mode
+        var grpcWebHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, httpHandler);
 
 
         var channel = GrpcChannel.ForAddress(baseUrl, new GrpcChannelOptions
@@ -40,25 +40,15 @@ public class HomeSpeakerMauiService : IHomeSpeakerMauiService
 
     public async Task<IEnumerable<SongModel>> GetAllSongsAsync()
     {
-        Console.WriteLine("[DEBUG] Fetching songs from server...");
         var result = new List<SongModel>();
 
-        try
+        using var call = client.GetSongs(new GetSongsRequest());
+        while (await call.ResponseStream.MoveNext())
         {
-            using var call = client.GetSongs(new GetSongsRequest());
-            while (await call.ResponseStream.MoveNext())
-            {
-                var reply = call.ResponseStream.Current;
-                Console.WriteLine($"[DEBUG] Received {reply.Songs.Count} songs from server.");
-                result.AddRange(reply.Songs.Select(songMsg => songMsg.ToSongModel()));
-            }
-            return result;
+            var reply = call.ResponseStream.Current;
+            result.AddRange(reply.Songs.Select(songMsg => songMsg.ToSongModel()));
         }
-        catch (RpcException ex)
-        {
-            Console.WriteLine($"[ERROR] gRPC Call Failed: {ex.Status.Detail}");
-            return new List<SongModel>();
-        }
+        return result;
     }
 
 

@@ -28,15 +28,14 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
 
 
+        //AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        //{
+        //    Debug.WriteLine($"[ERROR] Unhandled Exception: {e.ExceptionObject}");
+        //};
 
-        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-        {
-            Debug.WriteLine($"[ERROR] Unhandled Exception: {e.ExceptionObject}");
-        };
 
-
-        builder.Logging.AddDebug();
-        builder.Logging.SetMinimumLevel(LogLevel.Trace);
+        //builder.Logging.AddDebug();
+        //builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
 #if DEBUG
         builder.Logging.AddDebug();
