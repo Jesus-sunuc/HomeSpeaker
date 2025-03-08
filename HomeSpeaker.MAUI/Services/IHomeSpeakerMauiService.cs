@@ -12,7 +12,7 @@ namespace HomeSpeaker.MAUI.Services;
 /// Defining the methods outlined in the WASM project's HomeSpeakerService
 /// Noting which are directly from the proto file
 /// </summary>
-    interface IHomeSpeakerMauiService
+    public interface IHomeSpeakerMauiService
     {
         IEnumerable<SongMessage> Songs { get; }
 

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using HomeSpeaker.MAUI.Models;
 using HomeSpeaker.MAUI.Services;
 using HomeSpeaker.Shared;
 using System.Collections.ObjectModel;
@@ -9,55 +10,60 @@ namespace HomeSpeaker.MAUI.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-    private readonly HomeSpeakerMauiService homeSpeakerService;
+    private readonly IHomeSpeakerMauiService homeSpeakerService;
 
     [ObservableProperty]
-    private ObservableCollection<Song> songs;
+    private ObservableCollection<SongModel> songs;
 
     [ObservableProperty]
-    private string statusMessage;
+    private string statusMessage = "Welcome to HomeSpeaker!";
 
-    public MainViewModel()
+    public MainViewModel(IHomeSpeakerMauiService homeSpeakerService)
     {
-        homeSpeakerService = new HomeSpeakerMauiService("http://localhost:5028");
+        this.homeSpeakerService = homeSpeakerService;
     }
 
+
     [RelayCommand]
-    public async Task LoadSongsAsync()
+    public async Task LoadSongs()
     {
         try
         {
-            var list = await homeSpeakerService.GetAllSongsAsync();
-            Songs = new ObservableCollection<Song>(list);
-            StatusMessage = $"Loaded {list.Count} songs from server.";
+            Console.WriteLine("[DEBUG] Calling GetAllSongsAsync()...");
+            var songList = await homeSpeakerService.GetAllSongsAsync();
+            Console.WriteLine($"[DEBUG] Received {songList.Count()} songs from API.");
+
+            if (!songList.Any())
+            {
+                StatusMessage = "No songs found.";
+                return;
+            }
+
+            Songs = new ObservableCollection<SongModel>(songList);
+            StatusMessage = $"Loaded {Songs.Count} songs.";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"LoadSongs error: {ex.Message}";
+            Console.WriteLine($"[ERROR] LoadSongsAsync Exception: {ex.Message}");
+            StatusMessage = $"Error: {ex.Message}";
         }
     }
 
+
     [RelayCommand]
-    public async Task GetStatusAsync()
+    public async Task GetStatus()
     {
         try
         {
+            StatusMessage = "Fetching status...";
             var statusReply = await homeSpeakerService.GetStatusAsync();
-            StatusMessage = $"Currently playing: {statusReply?.CurrentSong?.Name}";
+            StatusMessage = statusReply != null && statusReply.CurrentSong != null
+                ? $"Now playing: {statusReply.CurrentSong.Name}"
+                : "No song currently playing.";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"GetStatus error: {ex.Message}";
+            StatusMessage = $"Error fetching status: {ex.Message}";
         }
-    }
-
-    [RelayCommand]
-    public async Task PlaySongAsync(Song selectedSong)
-    {
-        var reply = await homeSpeakerService.PlaySongAsync(selectedSong.SongId);
-        if (reply.Ok)
-            StatusMessage = $"Playing: {selectedSong.Name}";
-        else
-            StatusMessage = "Server rejected song play request.";
     }
 }

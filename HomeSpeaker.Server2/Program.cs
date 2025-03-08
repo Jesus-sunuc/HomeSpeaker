@@ -10,6 +10,14 @@ const string LocalCorsPolicy = nameof(LocalCorsPolicy);
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5280, listenOptions =>
+    {
+        listenOptions.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
+    });
+});
+
 builder.AddServiceDefaults();
 
 builder.Services.AddResponseCompression(o => o.EnableForHttps = true);
