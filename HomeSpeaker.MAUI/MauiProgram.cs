@@ -24,9 +24,10 @@ public static class MauiProgram
             return new HomeSpeakerMauiService(baseUrl);
         });
 
+        builder.Services.AddSingleton<MusicViewModel>();
         builder.Services.AddSingleton<MainViewModel>();
         builder.Services.AddSingleton<MainPage>();
-
+        builder.Services.AddSingleton<MusicPage>();
 
         //AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
         //{
