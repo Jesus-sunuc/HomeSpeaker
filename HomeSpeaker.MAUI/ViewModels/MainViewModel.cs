@@ -15,5 +15,11 @@ namespace HomeSpeaker.MAUI.ViewModels
         {
             await Shell.Current.GoToAsync("//MusicPage");
         }
+
+        [RelayCommand]
+        public async Task NavigateToServerSettingsPage()
+        {
+            await Shell.Current.GoToAsync("//ServerSettingsPage");
+        }
     }
 }

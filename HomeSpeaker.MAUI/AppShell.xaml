@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HomeSpeaker.MAUI"
+    xmlns:views="clr-namespace:HomeSpeaker.MAUI.Views"
     Shell.FlyoutBehavior="Flyout"
     Title="HomeSpeaker.MAUI">
 
@@ -17,6 +18,10 @@
         ContentTemplate="{DataTemplate local:MusicPage}"
         Route="MusicPage"/>
 
+    <ShellContent
+        Title="ServerSettings"
+        ContentTemplate="{DataTemplate views:ServerSettingsPage}"
+        Route="ServerSettingsPage"/>
 
 
 </Shell>
