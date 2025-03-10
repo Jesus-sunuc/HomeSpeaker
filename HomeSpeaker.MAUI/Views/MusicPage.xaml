@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:HomeSpeaker.MAUI.ViewModels"
-             x:Class="HomeSpeaker.MAUI.MusicPage">
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:vm="clr-namespace:HomeSpeaker.MAUI.ViewModels"
+              x:Class="HomeSpeaker.MAUI.MusicPage">
 
     <ScrollView>
         <VerticalStackLayout Padding="20">
             <Button Text="Load Music" 
-                Command="{Binding LoadSongsCommand}" 
-                WidthRequest="150" Margin="0, 30, 0, 20"/>
+                 Command="{Binding LoadSongsCommand}" 
+                 WidthRequest="150" Margin="0, 30, 0, 20"/>
 
             <Label Text="{Binding StatusMessage}" TextColor="Green" Margin="0,10,0,10"/>
 
@@ -17,13 +17,13 @@
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal" Padding="5">
                             <Label Text="{Binding Name}"
-                                   TextColor="White"
-                                   Margin="0, 0, 5, 0"
-                                   VerticalOptions="Center"/>
+                                    TextColor="White"
+                                    Margin="0, 0, 5, 0"
+                                    VerticalOptions="Center"/>
                             <Button Text="Play" 
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=PlaySongCommand}"
-                                    CommandParameter="{Binding .}"
-                                    BackgroundColor="SkyBlue"/>
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=PlaySongCommand}"
+                                     CommandParameter="{Binding .}"
+                                     BackgroundColor="SkyBlue"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

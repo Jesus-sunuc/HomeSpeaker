@@ -11,10 +11,12 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-    
+
     <ShellContent
         Title="Music"
         ContentTemplate="{DataTemplate local:MusicPage}"
         Route="MusicPage"/>
+
+
 
 </Shell>

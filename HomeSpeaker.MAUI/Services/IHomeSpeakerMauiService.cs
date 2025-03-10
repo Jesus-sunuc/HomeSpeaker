@@ -1,11 +1,5 @@
 ﻿using HomeSpeaker.MAUI.Models;
 using HomeSpeaker.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace HomeSpeaker.MAUI.Services;
 
 /// <summary>
@@ -15,9 +9,14 @@ namespace HomeSpeaker.MAUI.Services;
     public interface IHomeSpeakerMauiService
     {
         IEnumerable<SongMessage> Songs { get; }
-
         event EventHandler QueueChanged;
         event EventHandler<string>? StatusChanged;
+
+        void ChangeServer(string newBaseUrl);
+        void AddServer(string newServer);
+        void RemoveServer(string serverToRemove);
+        List<string> GetAvailableServers();
+
 
         Task AddToPlaylistAsync(string playlistName, string songPath);//rpc AddSongToPlaylist(AddSongToPlaylistRequest) returns (AddSongToPlaylistReply);
         Task ClearQueueAsync();// from WASM project but not proto file

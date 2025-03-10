@@ -1,4 +1,4 @@
-﻿using HomeSpeaker.MAUI.ViewModels;
+using HomeSpeaker.MAUI.ViewModels;
 using HomeSpeaker.Shared;
 using System.Collections.ObjectModel;
 

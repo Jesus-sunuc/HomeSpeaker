@@ -9,15 +9,27 @@ using HomeSpeaker.MAUI.Models;
 namespace HomeSpeaker.MAUI.Services;
 public class HomeSpeakerMauiService : IHomeSpeakerMauiService
 {
-    private readonly HomeSpeakerClient client;
-    private readonly List<SongMessage> _songs = new();
+    private HomeSpeakerClient client;
+    private string baseUrl;
+    private readonly List<string> availableServers = new();
 
+
+    private readonly List<SongMessage> _songs = new();
     public IEnumerable<SongMessage> Songs => _songs;
+
+
 
     public event EventHandler QueueChanged;
     public event EventHandler<string>? StatusChanged;
 
-    public HomeSpeakerMauiService(string baseUrl)
+    public HomeSpeakerMauiService(string initialBaseUrl)
+    {
+        baseUrl = initialBaseUrl;
+        availableServers.Add(initialBaseUrl);
+        InitializeClient();
+    }
+
+    private void InitializeClient()
     {
         var httpHandler = new SocketsHttpHandler
         {
@@ -27,7 +39,6 @@ public class HomeSpeakerMauiService : IHomeSpeakerMauiService
 
         var grpcWebHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, httpHandler);
 
-
         var channel = GrpcChannel.ForAddress(baseUrl, new GrpcChannelOptions
         {
             HttpHandler = httpHandler,
@@ -35,7 +46,51 @@ public class HomeSpeakerMauiService : IHomeSpeakerMauiService
         });
 
         client = new HomeSpeakerClient(channel);
+        Console.WriteLine($"[INFO] Initialized gRPC client with server: {baseUrl}");
     }
+
+    public void ChangeServer(string newBaseUrl)
+    {
+        if (availableServers.Contains(newBaseUrl))
+        {
+            baseUrl = newBaseUrl;
+            InitializeClient();
+            Console.WriteLine($"[INFO] Switched to new server: {newBaseUrl}");
+        }
+        else
+        {
+            Console.WriteLine($"[WARNING] Server {newBaseUrl} not found in available servers.");
+        }
+    }
+
+    public void AddServer(string newServer)
+    {
+        if (!availableServers.Contains(newServer))
+        {
+            availableServers.Add(newServer);
+            Console.WriteLine($"[INFO] Added new server: {newServer}");
+        }
+    }
+
+    public void RemoveServer(string serverToRemove)
+    {
+        if (availableServers.Contains(serverToRemove) && availableServers.Count > 1)
+        {
+            availableServers.Remove(serverToRemove);
+            Console.WriteLine($"[INFO] Removed server: {serverToRemove}");
+
+            if (serverToRemove == baseUrl)
+            {
+                ChangeServer(availableServers[0]);
+            }
+        }
+    }
+
+    public List<string> GetAvailableServers()
+    {
+        return new List<string>(availableServers);
+    }
+
 
 
     public async Task<IEnumerable<SongModel>> GetAllSongsAsync()

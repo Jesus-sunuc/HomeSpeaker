@@ -72,13 +72,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\MusicPage.xaml.cs">
-	    <DependentUpon>MusicPage.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="Views\MusicPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ServerSettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

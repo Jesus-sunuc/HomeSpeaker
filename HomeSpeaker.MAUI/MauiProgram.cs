@@ -1,5 +1,6 @@
 ﻿using HomeSpeaker.MAUI.Services;
 using HomeSpeaker.MAUI.ViewModels;
+using HomeSpeaker.MAUI.Views;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
@@ -28,6 +29,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainViewModel>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<MusicPage>();
+        builder.Services.AddSingleton<ServerSettingsViewModel>();
+        builder.Services.AddSingleton<ServerSettingsPage>();
+
 
         //AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
         //{
