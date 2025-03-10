@@ -20,9 +20,9 @@ namespace HomeSpeaker.MAUI.ViewModels
         [ObservableProperty]
         private ObservableCollection<string> servers;
 
-        public ServerSettingsViewModel(IHomeSpeakerMauiService homeSpeakerService)
+        public ServerSettingsViewModel(IHomeSpeakerMauiService _homeSpeakerService)
         {
-            homeSpeakerService = homeSpeakerService;
+            homeSpeakerService = _homeSpeakerService;
             servers = new ObservableCollection<string>(homeSpeakerService.GetAvailableServers());
         }
 
