@@ -39,15 +39,26 @@ public class HomeSpeakerMauiService : IHomeSpeakerMauiService
 
         var grpcWebHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, httpHandler);
 
-        var channel = GrpcChannel.ForAddress(baseUrl, new GrpcChannelOptions
+        var channelOptions = new GrpcChannelOptions
         {
-            HttpHandler = httpHandler,
-            Credentials = ChannelCredentials.Insecure
-        });
+            HttpHandler = grpcWebHandler
+        };
 
+        if (baseUrl.StartsWith("https", StringComparison.OrdinalIgnoreCase))
+        {
+            channelOptions.Credentials = ChannelCredentials.SecureSsl;
+        }
+        else
+        {
+            channelOptions.Credentials = ChannelCredentials.Insecure;
+        }
+
+        var channel = GrpcChannel.ForAddress(baseUrl, channelOptions);
         client = new HomeSpeakerClient(channel);
+
         Console.WriteLine($"[INFO] Initialized gRPC client with server: {baseUrl}");
     }
+
 
     public void ChangeServer(string newBaseUrl)
     {

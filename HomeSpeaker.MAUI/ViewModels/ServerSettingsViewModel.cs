@@ -40,7 +40,7 @@ namespace HomeSpeaker.MAUI.ViewModels
             {
                 homeSpeakerService.AddServer(NewServerUrl);
                 Servers.Add(NewServerUrl);
-                NewServerUrl = string.Empty; // Clear input field after adding
+                NewServerUrl = string.Empty;
             }
         }
 
