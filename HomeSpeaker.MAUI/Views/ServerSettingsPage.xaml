@@ -24,7 +24,7 @@
                     <HorizontalStackLayout>
                         <Label Text="{Binding .}" />
                         <Button Text="Switch"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerSettingsViewModel}}, Path=ChangeServerCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerSettingsViewModel}}, Path=SetActiveServerCommand}"
                                 CommandParameter="{Binding .}" />
                         <Button Text="Remove"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerSettingsViewModel}}, Path=RemoveServerCommand}"

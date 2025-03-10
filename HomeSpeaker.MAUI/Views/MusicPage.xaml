@@ -17,7 +17,7 @@
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal" Padding="5">
                             <Label Text="{Binding Name}"
-                                    TextColor="White"
+                                    TextColor="Black"
                                     Margin="0, 0, 5, 0"
                                     VerticalOptions="Center"/>
                             <Button Text="Play" 
