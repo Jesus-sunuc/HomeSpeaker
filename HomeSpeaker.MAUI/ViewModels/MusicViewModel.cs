@@ -17,7 +17,7 @@ public partial class MusicViewModel : ObservableObject
     private ObservableCollection<SongModel> songs;
 
     [ObservableProperty]
-    private string statusMessage = "Welcome to HomeSpeaker!";
+    private string statusMessage = "";
 
     public MusicViewModel(IHomeSpeakerMauiService homeSpeakerService)
     {

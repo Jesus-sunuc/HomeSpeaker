@@ -7,14 +7,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="20">
 
-            <Button Text="Music" 
-                Command="{Binding NavigateToMusicPageCommand}"
-                WidthRequest="100" Margin="0, 30, 0, 20"/>
-            <Button Text="Server" 
-                Command="{Binding NavigateToServerSettingsPageCommand}"
-                WidthRequest="100" Margin="0, 30, 0, 20"/>  
-
-            <Label Text="HomeSpeaker Maui" FontSize="24" HorizontalOptions="Center" />
+            <Label Text="More is coming..." FontSize="24" HorizontalOptions="Center" />
         </VerticalStackLayout>
         
     </ScrollView>

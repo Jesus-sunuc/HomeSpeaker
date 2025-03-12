@@ -2,8 +2,8 @@
 using HomeSpeaker.MAUI.ViewModels;
 using HomeSpeaker.MAUI.Views;
 using Microsoft.Extensions.Logging;
-using System.Diagnostics;
-
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Hosting;
 namespace HomeSpeaker.MAUI;
 
 public static class MauiProgram
@@ -48,6 +48,7 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+
         return builder.Build();
 	}
 }
