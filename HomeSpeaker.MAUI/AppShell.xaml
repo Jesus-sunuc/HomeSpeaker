@@ -7,19 +7,23 @@
     xmlns:views="clr-namespace:HomeSpeaker.MAUI.Views"
     Shell.FlyoutBehavior="Flyout"
     Title="HomeSpeaker.MAUI">
-
+    
     <TabBar>
         <ShellContent
             Title="Home"
-            Icon="cat.png"
+            Icon="house.svg"
             ContentTemplate="{DataTemplate local:MainPage}" />
         <ShellContent
-            Title="Music"
-            Icon="dog.png"
+            Title="Playlists"
+            Icon="collection.svg"
             ContentTemplate="{DataTemplate local:MusicPage}" />
         <ShellContent
+            Title="Search"
+            Icon="search.svg"
+            ContentTemplate="{DataTemplate views:YouTubePage}" />
+        <ShellContent
             Title="Server"
-            Icon="dog.png"
-            ContentTemplate="{DataTemplate views:ServerSettingsPage}" />
+            Icon="database.svg"
+            ContentTemplate="{DataTemplate views:ServerSettingsPage}" />    
     </TabBar>
 </Shell>

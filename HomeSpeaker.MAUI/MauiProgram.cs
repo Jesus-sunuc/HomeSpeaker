@@ -31,6 +31,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<MusicPage>();
         builder.Services.AddSingleton<ServerSettingsViewModel>();
         builder.Services.AddSingleton<ServerSettingsPage>();
+        builder.Services.AddSingleton<YouTubeService>();
+        builder.Services.AddSingleton<YouTubeViewModel>();
+        builder.Services.AddSingleton<YouTubePage>();
 
 
         //AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
