@@ -16,6 +16,8 @@
 
             <Label Text="HomeSpeaker Maui" FontSize="24" HorizontalOptions="Center" />
         </VerticalStackLayout>
+        
     </ScrollView>
+    
 
 </ContentPage>

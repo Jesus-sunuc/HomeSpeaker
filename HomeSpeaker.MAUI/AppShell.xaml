@@ -8,20 +8,18 @@
     Shell.FlyoutBehavior="Flyout"
     Title="HomeSpeaker.MAUI">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
-    <ShellContent
-        Title="Music"
-        ContentTemplate="{DataTemplate local:MusicPage}"
-        Route="MusicPage"/>
-
-    <ShellContent
-        Title="ServerSettings"
-        ContentTemplate="{DataTemplate views:ServerSettingsPage}"
-        Route="ServerSettingsPage"/>
-
-
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            Icon="cat.png"
+            ContentTemplate="{DataTemplate local:MainPage}" />
+        <ShellContent
+            Title="Music"
+            Icon="dog.png"
+            ContentTemplate="{DataTemplate local:MusicPage}" />
+        <ShellContent
+            Title="Server"
+            Icon="dog.png"
+            ContentTemplate="{DataTemplate views:ServerSettingsPage}" />
+    </TabBar>
 </Shell>
