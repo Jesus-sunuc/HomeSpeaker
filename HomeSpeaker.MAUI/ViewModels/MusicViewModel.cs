@@ -1,7 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HomeSpeaker.MAUI.Models;
 using HomeSpeaker.MAUI.Services;
+using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
 
 
@@ -92,4 +94,69 @@ public partial class MusicViewModel : ObservableObject
         }
     }
 
+    [RelayCommand]
+    public async Task StopPlay()
+    {
+        try 
+        {
+            await homeSpeakerService.StopPlayingAsync();
+            StatusMessage = GetStatus().ToString();
+        }
+        catch(Exception e)
+        {
+            StatusMessage = $"Error playing song: {e.Message}";
+        }
+    }
+    [RelayCommand]
+    public async Task ResumePlay()
+    {
+        try
+        {
+            await homeSpeakerService.ResumePlayAsync();
+            StatusMessage =  GetStatus().ToString();
+        }
+        catch(Exception e)
+        {
+            StatusMessage = $"Error playing song: {e.Message}";
+        }
+    }
+    [RelayCommand]
+    public async Task NextSong()
+    {
+        try 
+        { 
+            await homeSpeakerService.SkipToNextAsync();
+            StatusMessage =  GetStatus().ToString();
+        }
+        catch(Exception e)
+        {
+            StatusMessage = $"Error playing song: {e.Message}";
+        }
+    }
+    [RelayCommand]
+    public async Task ClearQueue()
+    {
+        try
+        {
+            await homeSpeakerService.ClearQueueAsync();
+            StatusMessage = "Queue Cleared";
+        }
+        catch(Exception e)
+        {
+            StatusMessage = $"Error playing song: {e.Message}";
+        }
+    }
+    [RelayCommand]
+    public async Task ShuffleQueue()
+    {
+        try
+        {
+            await homeSpeakerService.ShuffleQueueAsync();
+            StatusMessage = StatusMessage =  GetStatus().ToString();
+        }
+        catch(Exception e)
+        {
+            StatusMessage = $"Error playing song: {e.Message}";
+        }
+    }
 }

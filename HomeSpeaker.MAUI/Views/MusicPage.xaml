@@ -11,6 +11,28 @@
                  WidthRequest="150" Margin="0, 30, 0, 20"/>
 
             <Label Text="{Binding StatusMessage}" TextColor="Green" Margin="0,10,0,10"/>
+            <HorizontalStackLayout>
+                <Button
+                    Text="Stop"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=StopPlayCommand}"
+                    />
+                <Button
+                    Text="Resume"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=ResumePlayCommand}"
+                    />
+                <Button
+                    Text="Next Song"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=NextSongCommand}"
+                    />
+                <Button
+                    Text="Clear Queue"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=ClearQueueCommand}"
+                    />
+                <Button
+                    Text="Shuffle"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=ShuffleQueueCommand}"
+                    />      
+            </HorizontalStackLayout>
 
             <CollectionView ItemsSource="{Binding Songs}">
                 <CollectionView.ItemTemplate>
