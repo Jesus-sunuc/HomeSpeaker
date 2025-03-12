@@ -3,7 +3,10 @@
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
+    
+    <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+    </Style>
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
     </Style>
@@ -394,13 +397,14 @@
     </Style>
 
     <Style x:Key="ControlButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Transparent"/>
-        <Setter Property="BorderColor" Value="#10375C"/>
+        <Setter Property="BackgroundColor" Value="#121212"/>
+        <Setter Property="BorderColor" Value="#b3b3b3"/>
+        <Setter Property="BorderColor" Value="#535353"/>
         <Setter Property="BorderWidth" Value="2"/>
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="TextColor" Value="White"/>
         <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Padding" Value="8,4"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontSize" Value="16"/>
     </Style>
 
     <!--

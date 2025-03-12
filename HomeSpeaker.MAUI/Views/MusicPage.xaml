@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:vm="clr-namespace:HomeSpeaker.MAUI.ViewModels"
-              x:Class="HomeSpeaker.MAUI.MusicPage">
+              x:Class="HomeSpeaker.MAUI.MusicPage"
+              BackgroundColor="{StaticResource BackgroundColor}">
 
     <ScrollView>
         <VerticalStackLayout Padding="20, 0">
@@ -36,28 +37,28 @@
             <Label
                    Text="{Binding StatusMessage}"
                    TextColor="Green" 
-                   FontSize="14"
+                   FontSize="16"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
-                   Margin="0,15,0,10"/>
+                   Margin="0,20,0,20"/>
 
             <CollectionView ItemsSource="{Binding Songs}" >
                 <CollectionView.ItemTemplate >
                     <DataTemplate >
-                        <StackLayout Orientation="Horizontal" Padding="5">
-                            <Label Text="{Binding Name}"
-                                    TextColor="Black"
-                                    Margin="0, 0, 5, 0"
-                                    VerticalOptions="Center"
-                                   Padding="11"
-                                   />
+                        <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="#121212">
                             <Button
                                     ImageSource="play.png"
                                      Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=PlaySongCommand}"
                                      CommandParameter="{Binding .}"
                                      BackgroundColor="Green"
-                                     TextColor="White"
                                      Padding="0"/>
+                            <Label Text="{Binding Name}"
+                                    TextColor="#b3b3b3"
+                                    Margin="0, 0, 5, 0"
+                                    VerticalOptions="Center"
+                                   
+                                   Padding="11"
+                                   />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

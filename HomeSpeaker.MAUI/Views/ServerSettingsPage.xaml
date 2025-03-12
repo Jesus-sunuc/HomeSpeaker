@@ -3,23 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:HomeSpeaker.MAUI.ViewModels"
              x:Class="HomeSpeaker.MAUI.Views.ServerSettingsPage"
-             Title="ServerSettingsPage">
+             Title="ServerSettingsPage"
+              BackgroundColor="{StaticResource BackgroundColor}">
+    
     <VerticalStackLayout Padding="20, 0, 20, 0">
 
         <Entry Placeholder="Enter new server URL" 
                Text="{Binding NewServerUrl}" 
                WidthRequest="250"
-               Margin="0, 20, 0, 0"/>
+               Margin="0, 20, 0, 0"
+               BackgroundColor="#121212"/>
 
         <Button Text="Add Server" 
                 Command="{Binding AddServerCommand}" 
                 WidthRequest="100" 
                 BackgroundColor="#198754"
+                TextColor="White"
                 Margin="0, 10, 0, 10"/>
 
         <Label Text="Available Servers:" FontSize="18" Margin="0, 10, 0, 10"/>
 
-        <CollectionView ItemsSource="{Binding Servers}" BackgroundColor="#F6F5F5">
+        <CollectionView ItemsSource="{Binding Servers}" BackgroundColor="#121212">
             <CollectionView.ItemTemplate>
                 <DataTemplate >
                     <HorizontalStackLayout Padding="5">
@@ -27,10 +31,12 @@
                         <Button Text="Switch"
                                 Margin="10, 0, 10, 0"
                                 BackgroundColor="#00334E"
+                                TextColor="White"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerSettingsViewModel}}, Path=SetActiveServerCommand}"
                                 CommandParameter="{Binding .}" />
                         <Button Text="Remove"
                                 BackgroundColor="#dc3545"
+                                TextColor="White"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerSettingsViewModel}}, Path=RemoveServerCommand}"
                                 CommandParameter="{Binding .}" />
                     </HorizontalStackLayout>
