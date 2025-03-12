@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HomeSpeaker.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,21 +8,16 @@ using YoutubeExplode;
 
 namespace HomeSpeaker.MAUI.Services
 {
-    public class YouTubeService
+    public class YouTubeService(YoutubeClient _youtubeClient, HomeSpeakerMauiService homeSpeakerService)
     {
-        private readonly YoutubeClient _youtubeClient;
-
-        public YouTubeService()
-        {
-            _youtubeClient = new YoutubeClient();
-        }
 
         public async Task<List<string>> SearchYouTubeVideosAsync(string query)
         {
+            var vids = await homeSpeakerService.SearchVideoAsync(query);
             var results = new List<string>();
-            await foreach (var video in _youtubeClient.Search.GetVideosAsync(query))
+            foreach (var video in vids)
             {
-                results.Add($"{video.Title} ({video.Url})");
+                results.Add($"{video.Title}");// ({video.Url})");
             }
             return results;
         }

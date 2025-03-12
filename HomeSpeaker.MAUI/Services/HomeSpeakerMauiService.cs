@@ -4,6 +4,7 @@ using HomeSpeaker.Shared;
 using static HomeSpeaker.Shared.HomeSpeaker;
 using Grpc.Core;
 using HomeSpeaker.MAUI.Models;
+using System.Runtime.Intrinsics.Arm;
 
 
 namespace HomeSpeaker.MAUI.Services;
@@ -146,6 +147,12 @@ public class HomeSpeakerMauiService : IHomeSpeakerMauiService
         }
 
         return queue;
+    }
+
+    public async Task<List<Video>> SearchVideoAsync(string searchTerm)
+    {
+        var response = await client.SearchViedoAsync(new SearchVideoRequest { SearchTerm = searchTerm });
+        return response.Results.ToList();
     }
 
     public async Task ClearQueueAsync()
