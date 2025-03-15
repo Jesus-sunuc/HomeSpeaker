@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:vm="clr-namespace:HomeSpeaker.MAUI.ViewModels"
-              x:Class="HomeSpeaker.MAUI.MusicPage"
-              BackgroundColor="{StaticResource BackgroundColor}">
+              x:Class="HomeSpeaker.MAUI.MusicPage">
 
     <ScrollView>
         <VerticalStackLayout Padding="20, 0">
@@ -12,28 +11,33 @@
                     WidthRequest="150" Margin="0, 30, 0, 20"/>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="12" Margin="0, 0, 0, 5">
-                <Button Text="⏹ Stop"
+                <Button Text="Stop"
+                    ImageSource="stop.png"
                     Style="{StaticResource ControlButtonStyle}"
                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=StopPlayCommand}"/>
-                <Button Text="▶️ Resume"
+                <Button Text="Resume"
+                    ImageSource="playfill.png"
                     Style="{StaticResource ControlButtonStyle}"
                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=ResumePlayCommand}"/>
-                <Button Text="⏭ Next"
+                <Button Text="Next"
+                    ImageSource="skipforward.png"
                     Style="{StaticResource ControlButtonStyle}"
                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=NextSongCommand}"/>
             </HorizontalStackLayout>
 
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="12">
 
-                <Button Text="🗑 Clear Queue"
+                <Button Text="Clear Queue"
+                     ImageSource="trashfill.png"
                     Style="{StaticResource ControlButtonStyle}"
                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=ClearQueueCommand}"/>
 
-                <Button Text="🔀 Shuffle"
+                <Button Text="Shuffle"
+                        ImageSource="shuffle.png"
                     Style="{StaticResource ControlButtonStyle}"
                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=ShuffleQueueCommand}"/>
             </HorizontalStackLayout>
-            
+
             <Label
                    Text="{Binding StatusMessage}"
                    TextColor="Green" 
@@ -42,21 +46,20 @@
                    HorizontalOptions="Center"
                    Margin="0,20,0,20"/>
 
-            <CollectionView ItemsSource="{Binding Songs}" >
+            <CollectionView ItemsSource="{Binding Songs}">
                 <CollectionView.ItemTemplate >
                     <DataTemplate >
-                        <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="#121212">
+                        <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="#e1ece3">
                             <Button
                                     ImageSource="play.png"
                                      Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MusicViewModel}}, Path=PlaySongCommand}"
                                      CommandParameter="{Binding .}"
-                                     BackgroundColor="Green"
+                                     BackgroundColor="#62d089"
                                      Padding="0"/>
                             <Label Text="{Binding Name}"
-                                    TextColor="#b3b3b3"
+                                    TextColor="#121212"
                                     Margin="0, 0, 5, 0"
                                     VerticalOptions="Center"
-                                   
                                    Padding="11"
                                    />
                         </StackLayout>
@@ -67,3 +70,4 @@
     </ScrollView>
 
 </ContentPage>
+ 
