@@ -9,7 +9,7 @@
         <VerticalStackLayout Padding="20">
             <Label Text="YouTube Search" FontSize="24" HorizontalOptions="Center" />
 
-            <HorizontalStackLayout HorizontalOptions="Center">
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0, 0, 0, 10">
                 <Entry
                  Placeholder="What do you want to listen to?"
                  Text="{Binding SearchQuery}"
@@ -23,20 +23,22 @@
             </HorizontalStackLayout>
 
 
-            <ListView ItemsSource="{Binding SearchResults}" SelectionMode="Single">
+            <ListView ItemsSource="{Binding SearchResults}" SelectionMode="Single" BackgroundColor="#e1ece3">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="5" VerticalOptions="Center">
+                            <StackLayout Orientation="Horizontal" Padding="1" VerticalOptions="Center">
                                 <Button
                                  Text="▶"
                                  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:YouTubeViewModel}}, Path=PlayVideoCommand}"
-                                 CommandParameter="{Binding Id}"/>
+                                 CommandParameter="{Binding Id}"
+                                 BackgroundColor="#62d089"/>
                                 <Button
                                  Text="⬇"
                                  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:YouTubeViewModel}}, Path=DownloadVideoCommand}"
                                  CommandParameter="{Binding Id}"
-                                 Margin="5, 0, 5, 0"/>
+                                 Margin="5, 0, 5, 0"
+                                 BackgroundColor="#62d089"/>
                                 <Image Source="{Binding Thumbnail}"
                                     HeightRequest="50"
                                     WidthRequest="50"

@@ -11,19 +11,15 @@
     <TabBar>
         <ShellContent
             Title="Home"
-            Icon="house.svg"
             ContentTemplate="{DataTemplate local:MainPage}" />
         <ShellContent
             Title="Playlists"
-            Icon="collection.svg"
             ContentTemplate="{DataTemplate local:MusicPage}" />
         <ShellContent
             Title="Search"
-            Icon="search.svg"
             ContentTemplate="{DataTemplate views:YouTubePage}" />
         <ShellContent
             Title="Server"
-            Icon="database.svg"
             ContentTemplate="{DataTemplate views:ServerSettingsPage}" />    
     </TabBar>
 </Shell>
